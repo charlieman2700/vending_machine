@@ -12,6 +12,7 @@ Map<int, int> changeCalculator(int totalCost, int fundsReceived) {
   int residuo = 0;
 
   coinPool.forEach((coinType, quantity) {
+    // TODO: Esto aun no sirve porque no tiene que ser exacto, ejemplo: 2225 % 500 no da 0 pero le podria dar 4 monedas de 500
     if (totalCost % coinType == 0) {
       residuo = min(quantity, totalCost ~/ coinType);
       change[coinType] = residuo;
