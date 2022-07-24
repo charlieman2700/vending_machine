@@ -1,24 +1,18 @@
-import 'dart:math';
-
-Map<int, int> changeCalculator(int totalCost, int fundsReceived) {
-  Map<int, int> coinPool = {
-    500: 20,
-    100: 30,
-    50: 50,
-    25: 25,
-  };
+Map<int, int> changeCalculator(
+    {required int totalCost,
+    required int fundsReceived,
+    required Map<int, int> coinPool}) {
   Map<int, int> change = {};
-
-  int residuo = 0;
+  int totalChange = fundsReceived - totalCost;
 
   coinPool.forEach((coinType, quantity) {
-    // TODO: Esto aun no sirve porque no tiene que ser exacto, ejemplo: 2225 % 500 no da 0 pero le podria dar 4 monedas de 500
-    if (totalCost % coinType == 0) {
-      residuo = min(quantity, totalCost ~/ coinType);
-      change[coinType] = residuo;
-      coinPool[coinType] = quantity - residuo;
+    int coinQuantity = (totalChange / coinType).toInt();
+
+    if (coinQuantity != 0 && coinQuantity <= quantity) {
+      change[coinType] = coinQuantity;
+      totalChange = totalChange - (coinQuantity * coinType);
+      coinPool[coinType] = quantity - coinQuantity;
     }
   });
-  print(change);
   return change;
 }
