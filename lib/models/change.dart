@@ -1,18 +1,27 @@
+import 'dart:math';
+
 Map<int, int> changeCalculator(
     {required int totalCost,
     required int fundsReceived,
     required Map<int, int> coinPool}) {
   Map<int, int> change = {};
-  int totalChange = fundsReceived - totalCost;
+
+  int changeLeft = fundsReceived - totalCost;
 
   coinPool.forEach((coinType, quantity) {
-    int coinQuantity = (totalChange / coinType).toInt();
-
-    if (coinQuantity != 0 && coinQuantity <= quantity) {
-      change[coinType] = coinQuantity;
-      totalChange = totalChange - (coinQuantity * coinType);
+    // ~/ = integer division
+    int coinQuantity = changeLeft ~/ coinType;
+    if (changeLeft != 0 && coinQuantity > 0) {
+      change[coinType] = min(coinQuantity, quantity);
       coinPool[coinType] = quantity - coinQuantity;
+      changeLeft = changeLeft - (min(coinQuantity, quantity) * coinType);
     }
   });
-  return change;
+
+  bool canReturnChange = changeLeft == 0;
+  if (canReturnChange) {
+    return change;
+  } else {
+    return {};
+  }
 }
