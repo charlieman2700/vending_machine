@@ -54,7 +54,7 @@ class Product {
   int getAvailableQuantity() => _availableQuantity;
 }
 
-List products = [
+List<Product> products = [
   Product(
       id: '1',
       imageUrl: 'null',
