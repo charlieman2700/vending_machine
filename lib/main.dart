@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vending_machine/models/change.dart';
+import 'package:vending_machine/models/product.dart' as product;
 
 void main() {
   runApp(const MyApp());
@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    print(product.products.map((e) => e.toMap()));
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
