@@ -40,12 +40,16 @@ class Product {
     return translatedProduct;
   }
 
+  void decreaseAvailableQuantity(int decreaseBy) =>
+      _availableQuantity -= decreaseBy;
+
 // Setters And Getters
   void setID(ProductID id) => _id = id;
   void setImageUrl(String imageUrl) => _imageUrl = imageUrl;
   void setTitle(String title) => _title = title;
   void setPrice(double price) => _price = price;
-  void setAvailableQuantity(ProductID id) => _id = id;
+  void setAvailableQuantity(int newQuantity) =>
+      _availableQuantity = newQuantity;
 
   ProductID getID() => _id;
   String getImageUrl() => _imageUrl;
@@ -53,30 +57,3 @@ class Product {
   double getPrice() => _price;
   int getAvailableQuantity() => _availableQuantity;
 }
-
-List<Product> products = [
-  Product(
-      id: '1',
-      imageUrl: 'null',
-      title: 'Coca Cola',
-      price: 500,
-      availableQuantity: 10),
-  Product(
-      id: '2',
-      imageUrl: 'null',
-      title: 'Pepsi',
-      price: 600,
-      availableQuantity: 8),
-  Product(
-      id: '3',
-      imageUrl: 'null',
-      title: 'Fanta',
-      price: 550,
-      availableQuantity: 10),
-  Product(
-      id: '4',
-      imageUrl: 'null',
-      title: 'Sprite',
-      price: 725,
-      availableQuantity: 15),
-];
