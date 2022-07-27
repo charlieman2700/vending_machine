@@ -28,7 +28,7 @@ class MoneyManager {
   }
 
   bool substractCoins(int coinType, int quantity) {
-    if (_coinPool[coinType] != null) {
+    if (_coinPool[coinType] != null && quantity <= _coinPool[coinType]!) {
       _coinPool[coinType] = _coinPool[coinType]! - quantity;
       return true;
     }

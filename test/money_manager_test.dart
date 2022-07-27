@@ -83,38 +83,38 @@ void main() {
     test('Add Existing Coin', () {
       Map<int, int> coinPool = {
         500: 1,
-        100:0,
-        50:0,
+        100: 0,
+        50: 0,
         25: 1,
       };
       var moneyManager = MoneyManager(coinPool);
 
       moneyManager.addCoins(500, 5);
-      expect(moneyManager.getCoinPool(), {500: 6, 100:0, 50:0, 25: 1});
+      expect(moneyManager.getCoinPool(), {500: 6, 100: 0, 50: 0, 25: 1});
     });
 
     test('Substract more than available  ', () {
       Map<int, int> coinPool = {
         500: 1,
-        100:0,
-        50:0,
+        100: 0,
+        50: 0,
         25: 1,
       };
       var moneyManager = MoneyManager(coinPool);
 
-      expect(moneyManager.substractCoins(100,1),false);
+      expect(moneyManager.substractCoins(100, 1), false);
     });
 
     test('Substract unknow coin', () {
       Map<int, int> coinPool = {
         500: 1,
-        100:0,
-        50:0,
+        100: 0,
+        50: 0,
         25: 1,
       };
       var moneyManager = MoneyManager(coinPool);
 
-      expect(moneyManager.substractCoins(70,1), false);
+      expect(moneyManager.substractCoins(70, 1), false);
     });
   });
 }
