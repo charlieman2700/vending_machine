@@ -1,46 +1,43 @@
 import 'package:vending_machine/models/money_manager.dart';
 import 'package:vending_machine/models/product.dart';
+import 'package:vending_machine/models/shopping_cart.dart';
 
 class VendingMachine {
-  final List<Product> _productsInStock;
-  MoneyManager _moneyManager;
+  final List<Product> _products;
+  final Map<ProductID, int> _productStock;
+  final MoneyManager _moneyManager;
+  final ShoppingCart _shoppingCart;
 
-  VendingMachine(this._productsInStock, this._moneyManager);
-  VendingMachine.withStockValues()
-      : _productsInStock = [
-          Product(
-              id: '1',
-              imageUrl: 'null',
-              title: 'Coca Cola',
-              price: 500,
-              availableQuantity: 10),
-          Product(
-              id: '2',
-              imageUrl: 'null',
-              title: 'Pepsi',
-              price: 600,
-              availableQuantity: 8),
-          Product(
-              id: '3',
-              imageUrl: 'null',
-              title: 'Fanta',
-              price: 550,
-              availableQuantity: 10),
-          Product(
-              id: '4',
-              imageUrl: 'null',
-              title: 'Sprite',
-              price: 725,
-              availableQuantity: 15),
-        ],
-        _moneyManager = MoneyManager.withDefaultCoinPool();
+  VendingMachine(this._products, this._productStock, this._moneyManager,
+      this._shoppingCart);
+
+  factory VendingMachine.defaultProductStock() {
+    List<Product> defaultProducts = [
+      Product(id: '1', imageUrl: 'null', title: 'Coca Cola', price: 500),
+      Product(id: '2', imageUrl: 'null', title: 'Pepsi', price: 600),
+      Product(id: '3', imageUrl: 'null', title: 'Fanta', price: 550),
+      Product(id: '4', imageUrl: 'null', title: 'Sprite', price: 725)
+    ];
+    Map<ProductID, int> defaultProductStock = {
+      '1': 10,
+      '2': 8,
+      '3': 10,
+      '4': 15,
+    };
+    ShoppingCart defaultShoppingCart =
+        ShoppingCart.defaultValues(defaultProducts);
+
+    return VendingMachine(defaultProducts, defaultProductStock,
+        MoneyManager.withDefaultCoinPool(), defaultShoppingCart);
+  }
 
   void decreaseProductStock(ProductID id, int decreaseBy) {
-    _productsInStock
-        .singleWhere((product) => product.getID() == id)
-        .decreaseAvailableQuantity(decreaseBy);
+    _productStock[id]! - decreaseBy;
   }
 
 // Setter and getters
-  List<Product> getProductsInStock() => _productsInStock;
+  List<Product> getproducts() => _products;
+  Map<ProductID, int> getProductStock() => _productStock;
+  MoneyManager getMoneyManager() => _moneyManager;
+  ShoppingCart getShoppingCart() => _shoppingCart;
 }
