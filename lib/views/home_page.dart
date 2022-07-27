@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:vending_machine/controllers/vending_machine_controller.dart';
 import 'package:vending_machine/views/constants.dart';
 import 'package:vending_machine/widgets/soda_info.dart';
 
-class Home extends StatelessWidget {
+class Home extends GetView<VendingMachineController> {
   const Home({Key? key}) : super(key: key);
 
   @override
@@ -53,16 +55,16 @@ class Home extends StatelessWidget {
                       ],
                     ),
                     Container(
-                      margin: EdgeInsets.only(top: 30),
+                      margin: const EdgeInsets.only(top: 30),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const [
-                          SodaInfo(
+                        children: [
+                          const SodaInfo(
                             imageUrl: 'assets/images/bottles/can/cokeCan.png',
                             textName: 'Coca Cola',
                             productID: '1',
                           ),
-                          SodaInfo(
+                          const SodaInfo(
                             imageUrl: 'assets/images/bottles/can/pepsiCan.png',
                             textName: 'Pepsi',
                             productID: '2',
