@@ -22,12 +22,11 @@ class ShoppingCartView extends GetView<VendingMachineController> {
             ),
           ),
         ),
-        Divider(),
+        const Divider(),
         Row(
           children: [
             Expanded(
               child: Container(
-                // color: Colors.red,
                 margin: const EdgeInsets.only(left: 23, top: 23, right: 23),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -35,14 +34,12 @@ class ShoppingCartView extends GetView<VendingMachineController> {
                     Text(
                       'S O D A',
                       style: TextStyle(
-                        // fontFamily: 'Marmalede',
                         fontSize: 27,
                       ),
                     ),
                     Text(
                       'P R I C E',
                       style: TextStyle(
-                        // fontFamily: 'Marmalede',
                         fontSize: 27,
                       ),
                     ),

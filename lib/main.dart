@@ -14,7 +14,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Vending Machine',
-      // theme: ThemeData(brightness: Brightness.dark),
       home: Scaffold(
         body: Home(),
       ),

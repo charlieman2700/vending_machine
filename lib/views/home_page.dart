@@ -44,13 +44,12 @@ class Home extends GetView<VendingMachineController> {
           child: Row(
             children: [
               Expanded(
-                child: Container(
-                  child: const Drinks(),
+                child: SizedBox(
                   height: MediaQuery.of(context).size.height,
+                  child: const Drinks(),
                 ),
               ),
               Container(
-                  // color: Colors.grey,
                   width: MediaQuery.of(context).size.width * 0.38,
                   height: MediaQuery.of(context).size.height,
                   margin: const EdgeInsets.only(
@@ -58,13 +57,13 @@ class Home extends GetView<VendingMachineController> {
                     right: 23,
                   ),
                   child: Column(
-                    children: [
-                      const ShoppingCartView(),
+                    children: const [
+                      ShoppingCartView(),
                       Divider(
                         color: Colors.white,
                         height: 23,
                       ),
-                      const InsertMoneyPanel(),
+                      InsertMoneyPanel(),
                     ],
                   )),
             ],
