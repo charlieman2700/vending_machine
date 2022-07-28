@@ -11,22 +11,6 @@ void main() {
       Product(id: '4', imageUrl: 'null', title: 'Sprite', price: 725)
     ];
 
-    test('Add Product testing quantity', () {
-      ShoppingCart defaultShoppingCart =
-          ShoppingCart.defaultValues(defaultProducts);
-      defaultShoppingCart.addToCart('1');
-      expect(defaultShoppingCart.getProductsInCart(), {'1': 1});
-    });
-
-    test('Decrease Product testing quantity', () {
-      ShoppingCart defaultShoppingCart =
-          ShoppingCart.defaultValues(defaultProducts);
-      defaultShoppingCart.addToCart('4');
-      defaultShoppingCart.addToCart('1');
-      defaultShoppingCart.removeFromCart('1');
-      expect(defaultShoppingCart.getProductsInCart(), {'4': 1});
-    });
-
     test('Add Product testing total money Amount', () {
       ShoppingCart defaultShoppingCart =
           ShoppingCart.defaultValues(defaultProducts);
