@@ -43,9 +43,30 @@ class Home extends GetView<VendingMachineController> {
           style: descTextStyle,
           child: Row(
             children: [
-              const Drinks(),
-              const ShoppingCartView(),
-              const InsertMoneyPanel(),
+              Expanded(
+                child: Container(
+                  child: const Drinks(),
+                  height: MediaQuery.of(context).size.height,
+                ),
+              ),
+              Container(
+                  // color: Colors.grey,
+                  width: MediaQuery.of(context).size.width * 0.38,
+                  height: MediaQuery.of(context).size.height,
+                  margin: const EdgeInsets.only(
+                    bottom: 23,
+                    right: 23,
+                  ),
+                  child: Column(
+                    children: [
+                      const ShoppingCartView(),
+                      Divider(
+                        color: Colors.white,
+                        height: 23,
+                      ),
+                      const InsertMoneyPanel(),
+                    ],
+                  )),
             ],
           ),
         )

@@ -60,6 +60,12 @@ class MoneyManager {
     }
   }
 
+  bool isEnoughToPay(int costAmount, int moneyReceived) {
+    bool isEnough = false;
+    moneyReceived >= costAmount ? isEnough = true : isEnough = false;
+    return isEnough;
+  }
+
   //Setters and Getters
   Map<int, int> getCoinPool() => _coinPool;
   void setCoinPool(Map<int, int> newCoinPool) => _coinPool = _coinPool;

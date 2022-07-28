@@ -47,6 +47,14 @@ class VendingMachine {
     }
   }
 
+  List<int> getCoinTypes() {
+    List<int> coinTypes = [];
+    _moneyManager.getCoinPool().forEach((key, value) {
+      coinTypes.add(key);
+    });
+    return coinTypes;
+  }
+
   void removeFromShoppingCart(ProductID productToRemove) {
     if (_shoppingCart.canRemoveFromCart(productToRemove)) {
       _shoppingCart.removeFromCart(productToRemove);
