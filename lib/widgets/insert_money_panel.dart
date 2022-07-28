@@ -12,23 +12,21 @@ class InsertMoneyPanel extends GetView<VendingMachineController> {
     Widget onPay() {
       String textMessage = '';
       return Obx(() {
-        if (controller.isEnoughToPay()) {
+        if (controller.totalShoppingCart() == 0) {
+          textMessage = 'Your order is Empty';
+        } else if (controller.isEnoughToPay()) {
           controller.addCoinsToMachine();
           if (controller.canGiveChange()) {
             textMessage =
-                'Transacción Completa:\n Retire su Orden \n Su cambio es de:';
+                ' Transaction Completed:\n Enjoy your Order: \n Your Change is:';
           } else {
             textMessage =
-                'Su transacción no pudo ser completada, no hay suficientes monedas en la máquina para dar vuelto';
+                'Error: Not enough Coins for change, your coins will be returned:\n';
           }
         } else {
-          textMessage = 'No ha ingresado el mínimo del total a Pagar';
+          textMessage = 'Not enough coins received';
         }
-
-        return AlertDialog(
-          title: const Text('Payment Details:'),
-          content: Text(textMessage),
-        );
+        return Text(textMessage);
       });
     }
 
@@ -78,23 +76,23 @@ class InsertMoneyPanel extends GetView<VendingMachineController> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 170,
+              Container(
+                height: 185,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
                     Container(
-                        margin: const EdgeInsets.only(top: 12),
+                        margin: const EdgeInsets.only(top: 10),
                         child: Text(style: TextStyle(fontSize: 25), '₡500')),
                     Container(
-                        margin: const EdgeInsets.only(top: 12),
+                        margin: const EdgeInsets.only(top: 7),
                         child: Text(style: TextStyle(fontSize: 25), '₡100')),
                     Container(
-                        margin: const EdgeInsets.only(top: 12),
+                        margin: const EdgeInsets.only(top: 7),
                         child:
                             Text(style: const TextStyle(fontSize: 25), '₡50')),
                     Container(
-                        margin: const EdgeInsets.only(top: 12),
+                        margin: const EdgeInsets.only(top: 7),
                         child: Text(style: TextStyle(fontSize: 25), '₡25')),
                   ],
                 ),
@@ -127,9 +125,42 @@ class InsertMoneyPanel extends GetView<VendingMachineController> {
                         borderRadius: BorderRadius.circular(23), color: color1),
                     child: InkWell(
                       child: const Center(child: Text('Pay')),
-                      onTap: () => onPay(),
+                      onTap: () => showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                titleTextStyle: TextStyle(
+                                    fontSize: 60,
+                                    color: Colors.black.withOpacity(0.8)),
+                                contentTextStyle: TextStyle(
+                                    fontSize: 40,
+                                    color: Colors.black.withOpacity(0.8)),
+                                title: Text('Payment Info:'),
+                                actions: [
+                                  Center(
+                                    child: TextButton(
+                                        onPressed: () =>
+                                            Navigator.of(context).pop(),
+                                        child: Container(
+                                          width: 70,
+                                          height: 40,
+                                          decoration: BoxDecoration(
+                                              color: color1,
+                                              borderRadius:
+                                                  BorderRadius.circular(45)),
+                                          child: Center(
+                                            child: Text(
+                                                style: TextStyle(
+                                                    fontSize: 23,
+                                                    color: Colors.white),
+                                                'Ok'),
+                                          ),
+                                        )),
+                                  )
+                                ],
+                                content: onPay(),
+                              )),
                     ),
-                  )
+                  ),
                 ],
               ),
             ],
