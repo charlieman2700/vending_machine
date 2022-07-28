@@ -32,7 +32,33 @@ class VendingMachine {
   }
 
   void decreaseProductStock(ProductID id, int decreaseBy) {
-    _productStock[id]! - decreaseBy;
+    _productStock[id] = _productStock[id]! - decreaseBy;
+  }
+
+  void increaseProductStock(ProductID id, int increaseBy) {
+    _productStock[id] = _productStock[id]! + increaseBy;
+  }
+
+  void addProductToShoppingCart(ProductID productID) {
+    int productStockQuantity = _productStock[productID]!;
+    if (productStockQuantity > 0) {
+      _shoppingCart.addToCart(productID);
+      decreaseProductStock(productID, 1);
+    }
+  }
+
+  void removeFromShoppingCart(ProductID productToRemove) {
+    if (_shoppingCart.canRemoveFromCart(productToRemove)) {
+      _shoppingCart.removeFromCart(productToRemove);
+      increaseProductStock(productToRemove, 1);
+    }
+  }
+
+  int getProductCostByID(ProductID productID) {
+    return _products
+        .singleWhere((element) => element.getID() == productID)
+        .getPrice()
+        .toInt();
   }
 
 // Setter and getters

@@ -6,3 +6,5 @@ const color3 = Color.fromARGB(255, 232, 167, 124);
 const color4 = Color.fromARGB(255, 195, 141, 158);
 const color5 = Color.fromARGB(255, 65, 179, 164);
 const color6 = Color.fromARGB(255, 116, 199, 188);
+
+double drinksTextDivider = 5;
