@@ -3,9 +3,6 @@ import 'package:vending_machine/models/money_manager.dart';
 
 void main() {
   group('Calculate Coins For Change Tests: ', () {
-    //Leaving this comment to test in the future with the with the DefaultCoinPool
-    // MoneyManager withDefaultCoinPool = MoneyManager.withDefaultCoinPool();
-
     test('Enough Money but not enough coins', () {
       const changeAmount = 125;
       Map<int, int> change;

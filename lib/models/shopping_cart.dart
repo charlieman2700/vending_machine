@@ -71,6 +71,13 @@ class ShoppingCart {
     return isEmpty;
   }
 
+  void reset() {
+    _productsInCart.forEach((key, value) {
+      _productsInCart[key] = 0;
+    });
+    _updateTotalPrice();
+  }
+
   //Setters and Getters
   Map<Product, int> getProductsInCart() {
     Map<Product, int> productsWithQuantityGreaterThanZero = {};

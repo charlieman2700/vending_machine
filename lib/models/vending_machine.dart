@@ -47,6 +47,14 @@ class VendingMachine {
     }
   }
 
+  List<int> getCoinTypes() {
+    List<int> coinTypes = [];
+    _moneyManager.getCoinPool().forEach((key, value) {
+      coinTypes.add(key);
+    });
+    return coinTypes;
+  }
+
   void removeFromShoppingCart(ProductID productToRemove) {
     if (_shoppingCart.canRemoveFromCart(productToRemove)) {
       _shoppingCart.removeFromCart(productToRemove);
@@ -59,6 +67,18 @@ class VendingMachine {
         .singleWhere((element) => element.getID() == productID)
         .getPrice()
         .toInt();
+  }
+
+  void setShoppingCartInZero() {
+    _shoppingCart.reset();
+  }
+
+  void resetShoppingCart() {
+    _shoppingCart.getProductsInCart().forEach((key, value) {
+      _productStock[key.getID()] = _productStock[key.getID()]! + value;
+    });
+
+    _shoppingCart.reset();
   }
 
 // Setter and getters
