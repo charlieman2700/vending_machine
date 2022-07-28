@@ -23,4 +23,4 @@ Para correr los tests y ver el detalle de cada uno podemos usar el comando
 
 - flutter test -r expanded 
 ## Imagenes
-![Alt text](/Entregabe/AppScreenshots/ss1.png "SS1")
+![Alt text](Entregabe/AppScreenshots/ss1.png)
