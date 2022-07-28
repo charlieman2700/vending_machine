@@ -10,59 +10,50 @@ class ShoppingCartView extends GetView<VendingMachineController> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // color: Colors.grey,
-      width: MediaQuery.of(context).size.width * 0.38,
-      height: MediaQuery.of(context).size.height - 186,
-      margin: const EdgeInsets.only(
-        bottom: 23,
-        right: 23,
-      ),
-      child: Column(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(top: 23),
-            child: const Text(
-              'S h o p p i n g   C a r t',
-              style: TextStyle(
-                fontFamily: 'Marmalede',
-                fontSize: 48,
-              ),
+    return Column(
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 23),
+          child: const Text(
+            'S h o p p i n g   C a r t',
+            style: TextStyle(
+              fontFamily: 'Marmalede',
+              fontSize: 48,
             ),
           ),
-          Divider(),
-          Row(
-            children: [
-              Expanded(
-                child: Container(
-                  // color: Colors.red,
-                  margin: const EdgeInsets.only(left: 23, top: 23, right: 23),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text(
-                        'S O D A',
-                        style: TextStyle(
-                          // fontFamily: 'Marmalede',
-                          fontSize: 27,
-                        ),
+        ),
+        Divider(),
+        Row(
+          children: [
+            Expanded(
+              child: Container(
+                // color: Colors.red,
+                margin: const EdgeInsets.only(left: 23, top: 23, right: 23),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      'S O D A',
+                      style: TextStyle(
+                        // fontFamily: 'Marmalede',
+                        fontSize: 27,
                       ),
-                      Text(
-                        'P R I C E',
-                        style: TextStyle(
-                          // fontFamily: 'Marmalede',
-                          fontSize: 27,
-                        ),
+                    ),
+                    Text(
+                      'P R I C E',
+                      style: TextStyle(
+                        // fontFamily: 'Marmalede',
+                        fontSize: 27,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
-            ],
-          ),
-          shoppingList()
-        ],
-      ),
+            ),
+          ],
+        ),
+        shoppingList()
+      ],
     );
   }
 
