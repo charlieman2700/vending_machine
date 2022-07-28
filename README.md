@@ -1,16 +1,18 @@
 # vending_machine
 
-A new Flutter project.
+Parte 2 Examen 
+Nombre: Carlos Adrián Solórzano Cerdas
+Carné: B87741
+## Como correr  la aplicación web
+Esta WebApp fue implementada con flutter por lo que para correrla es necesario el sdk de flutter.
+Para instalarlo podemos ir al siguiente link oficial con pasos detallados:
+- [Paso a paso instalación Flutter SDK](https://docs.flutter.dev/get-started/install)
 
-## Getting Started
+Posteriormente basta con correr el comando: flutter run
+Como flutter puede correr en múltiples plataformas, aparece la computadora de escritorio y chrome.
+Seleccionar chrome.
+## Como correr  tests
+Para correr los tests y ver el detalle de cada uno podemos usar el comando
 
-This project is a starting point for a Flutter application.
+- flutter test -r expanded 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
