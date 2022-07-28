@@ -23,6 +23,15 @@ class ShoppingCart {
     _updateTotalPrice();
   }
 
+  bool canRemoveFromCart(ProductID productId) {
+    if (_productsInCart.containsKey(productId) &&
+        _productsInCart[productId]! > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   void removeFromCart(ProductID productToDecrease) {
     if (_productsInCart.containsKey(productToDecrease)) {
       _productsInCart[productToDecrease] =
@@ -44,12 +53,33 @@ class ShoppingCart {
     _totalPrice = totalSum;
   }
 
+  int productQuantityInCart(ProductID productID) {
+    int? amount = _productsInCart[productID];
+    if (amount != null) {
+      return amount;
+    }
+    return 0;
+  }
+
+  bool cartIsEmpy() {
+    bool isEmpty = true;
+    _productsInCart.forEach((key, value) {
+      if (value > 0) {
+        isEmpty = false;
+      }
+    });
+    return isEmpty;
+  }
+
   //Setters and Getters
-  Map<ProductID, int> getProductsInCart() {
-    Map<ProductID, int> productsWithQuantityGreaterThanZero = {};
+  Map<Product, int> getProductsInCart() {
+    Map<Product, int> productsWithQuantityGreaterThanZero = {};
     _productsInCart.forEach((productID, quantity) {
       if (quantity > 0) {
-        productsWithQuantityGreaterThanZero[productID] = quantity;
+        Product productName =
+            _products.singleWhere((element) => element.getID() == productID);
+
+        productsWithQuantityGreaterThanZero[productName] = quantity;
       }
     });
     return productsWithQuantityGreaterThanZero;
