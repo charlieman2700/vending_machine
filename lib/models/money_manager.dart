@@ -35,6 +35,32 @@ class MoneyManager {
     return false;
   }
 
+  bool canReturnChange(int changeAmount) {
+    Map<int, int> change = {};
+    Map<int, int> copyOfPool = _coinPool;
+    int changeLeft = changeAmount;
+    bool canReturnChange = false;
+
+    copyOfPool.forEach((coinType, quantity) {
+      // ' ~/ '   = integer division
+      int coinQuantity = changeLeft ~/ coinType;
+
+      if (changeLeft != 0 && coinQuantity > 0) {
+        change[coinType] = min(coinQuantity, quantity);
+        copyOfPool[coinType] = quantity - coinQuantity;
+        changeLeft = changeLeft - (min(coinQuantity, quantity) * coinType);
+      }
+    });
+
+    canReturnChange = changeLeft == 0;
+
+    if (canReturnChange) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   Map<int, int> calculateCoinsForChange(int changeAmount) {
     Map<int, int> change = {};
     int changeLeft = changeAmount;

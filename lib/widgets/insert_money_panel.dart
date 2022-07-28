@@ -9,27 +9,6 @@ class InsertMoneyPanel extends GetView<VendingMachineController> {
 
   @override
   Widget build(BuildContext context) {
-    Widget onPay() {
-      String textMessage = '';
-      return Obx(() {
-        if (controller.totalShoppingCart() == 0) {
-          textMessage = 'Your order is Empty';
-        } else if (controller.isEnoughToPay()) {
-          controller.addCoinsToMachine();
-          if (controller.canGiveChange()) {
-            textMessage =
-                ' Transaction Completed:\n Enjoy your Order: \n Your Change is:';
-          } else {
-            textMessage =
-                'Error: Not enough Coins for change, your coins will be returned:\n';
-          }
-        } else {
-          textMessage = 'Not enough coins received';
-        }
-        return Text(textMessage);
-      });
-    }
-
     return Column(
       children: [
         Container(
@@ -47,7 +26,6 @@ class InsertMoneyPanel extends GetView<VendingMachineController> {
           children: [
             Expanded(
               child: Container(
-                // color: Colors.red,
                 margin: const EdgeInsets.only(left: 23, top: 23, right: 23),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,7 +54,7 @@ class InsertMoneyPanel extends GetView<VendingMachineController> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              SizedBox(
                 height: 185,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -125,40 +103,7 @@ class InsertMoneyPanel extends GetView<VendingMachineController> {
                         borderRadius: BorderRadius.circular(23), color: color1),
                     child: InkWell(
                       child: const Center(child: Text('Pay')),
-                      onTap: () => showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                                titleTextStyle: TextStyle(
-                                    fontSize: 60,
-                                    color: Colors.black.withOpacity(0.8)),
-                                contentTextStyle: TextStyle(
-                                    fontSize: 40,
-                                    color: Colors.black.withOpacity(0.8)),
-                                title: Text('Payment Info:'),
-                                actions: [
-                                  Center(
-                                    child: TextButton(
-                                        onPressed: () =>
-                                            Navigator.of(context).pop(),
-                                        child: Container(
-                                          width: 70,
-                                          height: 40,
-                                          decoration: BoxDecoration(
-                                              color: color1,
-                                              borderRadius:
-                                                  BorderRadius.circular(45)),
-                                          child: Center(
-                                            child: Text(
-                                                style: TextStyle(
-                                                    fontSize: 23,
-                                                    color: Colors.white),
-                                                'Ok'),
-                                          ),
-                                        )),
-                                  )
-                                ],
-                                content: onPay(),
-                              )),
+                      onTap: () => controller.handlePaymentStates(context),
                     ),
                   ),
                 ],

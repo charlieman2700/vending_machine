@@ -69,6 +69,18 @@ class VendingMachine {
         .toInt();
   }
 
+  void setShoppingCartInZero() {
+    _shoppingCart.reset();
+  }
+
+  void resetShoppingCart() {
+    _shoppingCart.getProductsInCart().forEach((key, value) {
+      _productStock[key.getID()] = _productStock[key.getID()]! + value;
+    });
+
+    _shoppingCart.reset();
+  }
+
 // Setter and getters
   List<Product> getproducts() => _products;
   Map<ProductID, int> getProductStock() => _productStock;
